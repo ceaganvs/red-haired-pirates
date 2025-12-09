@@ -1,8 +1,8 @@
 """
-View functions for the Red-Haired Pirates web application.
+View functions for the Red Hair Pirates web application.
 
-This module handles all HTTP requests and renders templates
-for displaying information about Shanks and managing crew applications.
+This module contains all the view functions that handle HTTP requests
+and render templates for the crew management system.
 """
 
 from django.shortcuts import render, redirect
@@ -13,55 +13,55 @@ from .forms import CrewSignupForm
 
 def home(request):
     """
-    Display the home page with information about Shanks.
+    Renders the home page with Shanks biography and features.
     
     Args:
-        request: HTTP request object
+        request: HttpRequest object.
         
     Returns:
-        Rendered home.html template
+        HttpResponse: Rendered home page template.
     """
     return render(request, 'webapp/home.html')
 
 
 def about(request):
     """
-    Display the biography page with Shanks' backstory.
+    Renders the about page with detailed Shanks biography.
     
     Args:
-        request: HTTP request object
+        request: HttpRequest object.
         
     Returns:
-        Rendered about.html template
+        HttpResponse: Rendered about page template.
     """
     return render(request, 'webapp/about.html')
 
 
 def contact(request):
     """
-    Display the contact page.
+    Renders the contact page with contact information.
     
     Args:
-        request: HTTP request object
+        request: HttpRequest object.
         
     Returns:
-        Rendered contact.html template
+        HttpResponse: Rendered contact page template.
     """
     return render(request, 'webapp/contact.html')
 
 
 def join_crew(request):
     """
-    Handle crew member signup form submission and display.
+    Handles crew member signup form submission and display.
     
-    Process POST requests to save new crew applications and
-    display the signup form on GET requests.
+    Processes POST requests to save new crew member applications.
+    Displays the signup form for GET requests.
     
     Args:
-        request: HTTP request object
+        request: HttpRequest object containing form data if POST.
         
     Returns:
-        Rendered join_crew.html template with form or redirect to crew list
+        HttpResponse: Rendered join crew page with form or redirect to crew list.
     """
     if request.method == 'POST':
         form = CrewSignupForm(request.POST)
@@ -77,16 +77,13 @@ def join_crew(request):
 
 def crew_list(request):
     """
-    Display a list of all crew member applications.
-    
-    Retrieves all CrewMember objects from the database and displays
-    them in a grid layout.
+    Displays a list of all crew members who have joined.
     
     Args:
-        request: HTTP request object
+        request: HttpRequest object.
         
     Returns:
-        Rendered crew_list.html template with all crew members
+        HttpResponse: Rendered crew list page with all crew members.
     """
     members = CrewMember.objects.all()
     return render(request, 'webapp/crew_list.html', {'members': members})
