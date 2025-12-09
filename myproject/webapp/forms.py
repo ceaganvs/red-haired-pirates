@@ -1,8 +1,8 @@
 """
-Form definitions for the Red-Haired Pirates crew application system.
+Forms for the Red Hair Pirates crew management system.
 
-This module contains Django forms for handling crew member signups
-with Bootstrap styling and custom validation.
+This module defines the Django forms used for crew member registration
+and data validation.
 """
 
 from django import forms
@@ -11,17 +11,16 @@ from .models import CrewMember
 
 class CrewSignupForm(forms.ModelForm):
     """
-    Form for new crew member applications.
+    Form for new crew members to sign up and join the Red Hair Pirates.
     
-    This ModelForm provides a user-friendly interface for submitting
-    applications to join the Red Hair Pirates. Includes Bootstrap
-    styling and custom placeholders for better UX.
+    This ModelForm provides a user-friendly interface for collecting
+    crew member information with proper validation and Bootstrap styling.
     
-    Meta:
-        model: CrewMember model
-        fields: All user-facing fields for the application
-        widgets: Custom Bootstrap-styled input widgets
-        labels: User-friendly field labels
+    Attributes:
+        model: CrewMember model that this form is based on.
+        fields: List of model fields to include in the form.
+        widgets: Custom widget configurations for form fields.
+        labels: User-friendly labels for each form field.
     """
     
     class Meta:
