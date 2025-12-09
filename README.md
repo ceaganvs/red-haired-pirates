@@ -1,59 +1,134 @@
-# Red-Haired Shanks - Django Web Application
+# Red-Haired Pirates
 
-A Django web application about Shanks, the Red-Haired pirate captain from One Piece. Features include biography, crew member signup system, and contact pages.
+Django website about Shanks from One Piece featuring crew member signup functionality.
 
-## Setup Instructions
+## Prerequisites
 
-### Option 1: Local Setup
+- Python 3.8 or higher
+- Docker and Docker Compose (for Docker deployment)
 
-1. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+## Setup and Run Instructions
 
-2. Navigate to the project directory:
-```bash
-cd myproject
-```
+### Option 1: Using Virtual Environment (venv)
 
-3. Run migrations:
-```bash
-python manage.py migrate
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ceaganvs/red-haired-pirates.git
+   cd red-haired-pirates
+   ```
 
-4. Run the development server:
-```bash
-python manage.py runserver
-```
+2. **Create and activate virtual environment**
+   
+   On Windows:
+   ```bash
+   python -m venv .venv
+   .venv\Scripts\activate
+   ```
+   
+   On macOS/Linux:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
 
-5. Open your browser and visit: http://127.0.0.1:8000/
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### Option 2: Docker Setup
+4. **Navigate to project directory**
+   ```bash
+   cd myproject
+   ```
 
-1. Build and run with Docker Compose:
-```bash
-docker-compose up --build
-```
+5. **Run database migrations**
+   ```bash
+   python manage.py migrate
+   ```
 
-2. Open your browser and visit: http://127.0.0.1:8000/
+6. **Collect static files**
+   ```bash
+   python manage.py collectstatic --noinput
+   ```
 
-3. To stop the containers:
-```bash
-docker-compose down
-```
+7. **Start the development server**
+   ```bash
+   python manage.py runserver
+   ```
 
-## Project Structure
+8. **Access the application**
+   
+   Open your browser and visit: `http://127.0.0.1:8000/`
 
-- **myproject/** - Main project settings
-- **webapp/** - Main application with views and templates
-- **static/** - CSS and static files
-- **db.sqlite3** - SQLite database (created after first migration)
+9. **Deactivate virtual environment (when done)**
+   ```bash
+   deactivate
+   ```
+
+### Option 2: Using Docker
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ceaganvs/red-haired-pirates.git
+   cd red-haired-pirates
+   ```
+
+2. **Build and run with Docker Compose**
+   ```bash
+   docker-compose up --build
+   ```
+
+3. **Access the application**
+   
+   Open your browser and visit: `http://127.0.0.1:8000/`
+
+4. **Stop the containers**
+   ```bash
+   docker-compose down
+   ```
+
+## Security Notes
+
+**Important:** This project uses Django's built-in SECRET_KEY for demonstration purposes. For production deployment:
+
+1. **Generate a new SECRET_KEY:**
+   ```python
+   python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+   ```
+
+2. **Set it as an environment variable:**
+   
+   On Windows:
+   ```bash
+   set DJANGO_SECRET_KEY=your-generated-secret-key-here
+   ```
+   
+   On macOS/Linux:
+   ```bash
+   export DJANGO_SECRET_KEY=your-generated-secret-key-here
+   ```
+
+3. **Update settings.py** to use the environment variable:
+   ```python
+   SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-key-for-dev')
+   ```
+
+**Never commit passwords, API keys, or secret keys to public repositories.**
 
 ## Features
 
 - Home page with Shanks biography
+- About page with character background
+- Contact page
 - Join Crew - Database-driven signup system
 - Crew Members - View all registered crew members
+
+## Technology Stack
+
+- Django 5.0.1
+- SQLite3 database
+- Bootstrap 5.3.2
+- Docker support included
 - Contact page
 - SQLite3 database integration
 - Bootstrap 5 responsive design
